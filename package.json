@@ -30,10 +30,13 @@
         "README.md"
     ],
     "dependencies": {
-        "@sap/cds": "^7",
-        "express": "^4.17.1"
+        "@sap-cloud-sdk/connectivity": "^3.13.0",
+        "@sap-cloud-sdk/http-client": "^3.13.0",
+        "@sap-cloud-sdk/util": "^3.13.0"
     },
     "devDependencies": {
+        "@sap/cds": ">=7.3",
+        "@sap/cds-dk": ">=7.3",
         "prettier": "^3.3.3",
         "semantic-release": "^24.2.1"
     },
@@ -49,8 +52,7 @@
                     "kind": "notify-to-rest"
                 },
                 "prefix": "$app-name",
-                "types": "srv/notification-types.json",
-                "outbox": true
+                "types": "srv/notification-types.json"
             },
             "kinds": {
                 "notify-to-console": {
