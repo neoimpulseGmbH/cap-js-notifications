@@ -1,6 +1,6 @@
 const cds = require("@sap/cds");
 const LOG = cds.log('notifications');
-const { readFile } = require("../lib/utils");
+const { readFile, buildNotification } = require("../lib/utils");
 
 module.exports = class NotifyToConsole extends cds.Service {
   async init() {
@@ -15,7 +15,7 @@ module.exports = class NotifyToConsole extends cds.Service {
       console.log (
         '\n---------------------------------------------------------------\n' +
         'Notification:', req.event,
-         notification,
+        buildNotification(notification),
         '\n---------------------------------------------------------------\n',
       )
 
