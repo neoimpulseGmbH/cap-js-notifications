@@ -1,0 +1,16 @@
+[
+	{
+		"NotificationTypeKey": "ExampleMessage",
+		"NotificationTypeVersion": "1",
+		"Templates": [
+			{
+				"Language": "en",
+				"TemplateSensitive": "Example {{Example_ID}} completed.",
+				"TemplatePublic": "Rejected Example detected.",
+				"TemplateGrouped": "Example for which you are responsible have been rejected.",
+				"TemplateLanguage": "Mustache",
+				"Subtitle": "The user {{Username}} has completed the unloading process for Example {{Example_ID}}. Please review and proceed with posting."
+			}
+		]
+	}
+]

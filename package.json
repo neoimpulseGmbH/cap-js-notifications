@@ -1,0 +1,65 @@
+{
+    "name": "@neoimpulse/cap-js-notifications",
+    "version": "0.0.0-development",
+    "description": "A CDS plugin to provide an easy action for the notification service",
+    "main": "cds-plugin.js",
+    "scripts": {
+        "pretty": "npx prettier --write ."
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/neoimpulseGmbH/cap-js-notifications"
+    },
+    "keywords": [
+        "cds",
+        "cap",
+        "trim",
+        "plugin"
+    ],
+    "author": "Neoimpulse GmbH",
+    "license": "Apache-2.0",
+    "publishConfig": {
+        "access": "public"
+    },
+    "files": [
+        "lib",
+        "srv",
+        "cds-plugin.js",
+        "package.json",
+        "LICENSE",
+        "README.md"
+    ],
+    "dependencies": {
+        "@sap/cds": "^7",
+        "express": "^4.17.1"
+    },
+    "devDependencies": {
+        "prettier": "^3.3.3",
+        "semantic-release": "^24.0.0"
+    },
+    "cds": {
+        "requires": {
+            "destinations": true,
+            "notifications": {
+                "[development]": {
+                    "kind": "notify-to-console"
+                },
+                "[production]": {
+                    "destination": "SAP_Notifications",
+                    "kind": "notify-to-rest"
+                },
+                "prefix": "$app-name",
+                "types": "srv/notification-types.json",
+                "outbox": true
+            },
+            "kinds": {
+                "notify-to-console": {
+                    "impl": "@neoimpulse/cap-js-notifications/srv/notifyToConsole"
+                },
+                "notify-to-rest": {
+                    "impl": "@neoimpulse/cap-js-notifications/srv/notifyToRest"
+                }
+            }
+        }
+    }
+}
