@@ -11,11 +11,15 @@ module.exports = exports = class NotifyToRest extends cds.Service  {
     const notificationTypes = readFile(cds.env.requires?.notifications?.types);
     const eventsToListen = notificationTypes.map(notificationType => notificationType.NotificationTypeKey);
     LOG._info && LOG.info(`Listening to events: ${eventsToListen.join(", ")}`);
-    this.on(eventsToListen, req => this.postNotification(req.data))
+    this.on(eventsToListen, req => this.postNotification(req))
     return super.init()
   }
 
-  async postNotification(notificationData) {
+  async postNotification(req) {
+    const data = req.data;
+    const type = data.type
+    const message = data.message
+    message.type = type
     const notificationDestination = await getNotificationDestination();
     const csrfHeaders = await buildHeadersForDestination(notificationDestination, {
       url: NOTIFICATIONS_API_ENDPOINT,
@@ -28,7 +32,7 @@ module.exports = exports = class NotifyToRest extends cds.Service  {
       await executeHttpRequest(notificationDestination, {
         url: `${NOTIFICATIONS_API_ENDPOINT}/Notifications`,
         method: "post",
-        data: buildNotification(notificationData),
+        data: buildNotification(message),
         headers: csrfHeaders,
       });
     } catch (err) {
