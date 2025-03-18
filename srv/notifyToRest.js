@@ -18,8 +18,10 @@ module.exports = exports = class NotifyToRest extends cds.Service  {
   async postNotification(req) {
     const data = req.data;
     const type = data.type
-    const message = data.message
+    let message = data.message
     message.type = type
+    message = buildNotification(message);
+
     const notificationDestination = await getNotificationDestination();
     const csrfHeaders = await buildHeadersForDestination(notificationDestination, {
       url: NOTIFICATIONS_API_ENDPOINT,
@@ -27,7 +29,7 @@ module.exports = exports = class NotifyToRest extends cds.Service  {
 
     try {
       LOG._info && LOG.info(
-        `Sending notification of key: ${notificationData.NotificationTypeKey} and version: ${notificationData.NotificationTypeVersion}`
+        `Sending notification of key: ${message.NotificationTypeKey} and version: ${message.NotificationTypeVersion}`
       );
       await executeHttpRequest(notificationDestination, {
         url: `${NOTIFICATIONS_API_ENDPOINT}/Notifications`,
