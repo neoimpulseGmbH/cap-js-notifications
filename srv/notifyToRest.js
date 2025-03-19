@@ -16,9 +16,8 @@ module.exports = exports = class NotifyToRest extends cds.Service  {
   }
 
   async postNotification(req) {
-    const data = req.data;
-    const type = data.type
-    let message = data.message
+    const type = req.event
+    let message = req.data
     message.type = type
     message = buildNotification(message);
 

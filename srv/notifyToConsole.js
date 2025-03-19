@@ -11,14 +11,14 @@ module.exports = class NotifyToConsole extends cds.Service {
 
     this.on(eventsToListen, req => {
       LOG._debug && LOG.debug('Handling notification event:', req.event)
-      const data = req.data;
-      const type = data.type
-      const message = data.message
+      const type = req.event
+      let message = req.data
       message.type = type
+      message = buildNotification(message);
       console.log (
         '\n---------------------------------------------------------------\n' +
         'Notification:', req.event,
-        buildNotification(message),
+        message,
         '\n---------------------------------------------------------------\n',
       )
 
