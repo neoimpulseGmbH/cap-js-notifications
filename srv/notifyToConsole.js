@@ -9,7 +9,7 @@ module.exports = class NotifyToConsole extends cds.Service {
         LOG._info && LOG.info(`Listening to events: ${eventsToListen.join(", ")}`);
 
         this.on(eventsToListen, (req) => {
-            LOG._debug && LOG.debug("Handling notification event:", req.event);
+            LOG._debug && LOG.debug("Handling notification event", req.event);
             const type = req.event;
             let message = req.data;
             message.type = type;
@@ -22,7 +22,7 @@ module.exports = class NotifyToConsole extends cds.Service {
             );
 
             const { NotificationTypeKey, NotificationTypeVersion } = message;
-            const types = cds.notifications.local.types; // REVISIT: what is this?
+            const types = cds.notifications.local.types;
 
             if (!(NotificationTypeKey in types)) {
                 LOG._warn && LOG.warn(`Notification Type ${NotificationTypeKey} is not in the notification types file`);
