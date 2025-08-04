@@ -21,7 +21,7 @@ module.exports = class NotifyToConsole extends cds.Service {
                 "\n---------------------------------------------------------------\n"
             );
 
-            const { NotificationTypeKey, NotificationTypeVersion } = notification;
+            const { NotificationTypeKey, NotificationTypeVersion } = message;
             const types = cds.notifications.local.types; // REVISIT: what is this?
 
             if (!(NotificationTypeKey in types)) {
