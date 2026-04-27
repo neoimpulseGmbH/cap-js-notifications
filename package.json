@@ -30,15 +30,15 @@
         "README.md"
     ],
     "dependencies": {
-        "@sap-cloud-sdk/connectivity": "^3.13.0",
-        "@sap-cloud-sdk/http-client": "^3.13.0",
-        "@sap-cloud-sdk/util": "^3.13.0"
+		"@sap-cloud-sdk/connectivity": "^4",
+		"@sap-cloud-sdk/http-client": "^4",
+		"@sap-cloud-sdk/resilience": "^4"
     },
     "devDependencies": {
-        "@sap/cds": ">=7.3",
-        "@sap/cds-dk": ">=7.3",
-        "prettier": "^3.3.3",
-        "semantic-release": "^24.2.1"
+        "@sap/cds": ">=9",
+        "@sap/cds-dk": ">=9",
+        "prettier": "^3",
+        "semantic-release": "^24"
     },
     "cds": {
         "requires": {
