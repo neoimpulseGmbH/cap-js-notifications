@@ -10,7 +10,7 @@ CAP JS Notifications is a CDS plugin designed to provide an easy action for the 
 
 - Send notifications to REST endpoints or console based on the environment.
 - Validate and process notification types.
-- Deploy notification types to the notification service.
+- Deploy notification types to the notification service. The deployment is skipped for the `notify-to-console` kind, as there is no service to deploy to, and a failing deployment is logged as a warning instead of preventing the server from starting.
 - Customizable notification templates.
 
 ## Installation
